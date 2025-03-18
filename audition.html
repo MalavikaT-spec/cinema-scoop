@@ -1,0 +1,184 @@
+{% include 'feature_header.html'%}
+<br><br><br><br><br><br><br>
+<div class="container my-5">
+    <h1 class="text-center text-primary mb-4">Audition Details Submission</h1>
+    <form method="post" onsubmit="return validateForm()">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover shadow-lg">
+                <tbody>
+                    <tr>
+                        <th>Title</th>
+                        <td><input type="text" class="form-control" name="title" placeholder="Enter title" required pattern="^[a-zA-Z\s]+$" title="Title should contain only letters and spaces"></td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td><input type="text" class="form-control" name="description" placeholder="Enter description" required pattern="^[a-zA-Z0-9\s.,!?'-]+$" title="Description can include letters, numbers, and basic punctuation"></td>
+                    </tr>
+                    <tr>
+                        <th>Audition Date</th>
+                        <td>
+                            <input type="date" class="form-control" name="audition_date" id="audition_date" placeholder="Enter audition date" required min="{{ current_date }}">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th>Location</th>
+                        <td><input type="text" class="form-control" name="location" placeholder="Enter location" required pattern="^[a-zA-Z\s]+$" title="Location should contain only letters and spaces"></td>
+                    </tr>
+                    <tr>
+                        <th>Time to Reach</th>
+                        <td><input type="time" class="form-control" name="time_to_reach" placeholder="Enter time to reach" required pattern="^[a-zA-Z0-9\s:]+$" title="Time to reach can include letters, numbers, and colons"></td>
+                    </tr>
+                    <tr>
+                        <th>Requirements</th>
+                        <td><input type="text" class="form-control" name="requirements" placeholder="Enter requirements" required pattern="^[a-zA-Z0-9\s.,!?'-]+$" title="Requirements can include letters, numbers, and basic punctuation"></td>
+                    </tr>
+                    <tr>
+                        <th>Deadline</th>
+                        <td><input type="date" class="form-control" name="deadline" placeholder="Enter deadline" required></td>
+                    </tr>
+                    <tr>
+                        <th>Contact Number</th>
+                        <td><input type="text" class="form-control" name="contact_number" placeholder="Enter contact number" required pattern="^\+\d{1,3}\d{1,14}$" title="Contact number should be in international format, starting with + followed by country code and number"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <button type="submit" name="submit" class="btn btn-primary btn-lg">Submit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+
+<!-- Add Custom CSS Styling -->
+<style>
+    /* General Page Styling */
+    body {
+        font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    /* Table Customization */
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 15px;
+    }
+
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f8f9fa;
+    }
+
+    /* Button Customization */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 12px 30px;
+        font-size: 1.2rem;
+        width: 100%;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    /* Title Styling */
+    h1 {
+        font-size: 36px;
+        color: #007bff;
+        font-weight: 600;
+    }
+
+    /* Footer Styling */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #343a40;
+        color: white;
+        margin-top: 50px;
+    }
+
+    /* Placeholder Styling */
+    ::placeholder {
+        color: #6c757d;
+        font-style: italic;
+    }
+</style>
+<br><br><br><br><br>
+{% include 'footer.html'%}
+
+<script>
+function validateForm() {
+    const titlePattern = /^[a-zA-Z\s]+$/;
+    const descriptionPattern = /^[a-zA-Z0-9\s.,!?'-]+$/;
+    const locationPattern = /^[a-zA-Z\s]+$/;
+    const timeToReachPattern = /^[a-zA-Z0-9\s:]+$/;
+    const requirementsPattern = /^[a-zA-Z0-9\s.,!?'-]+$/;
+    const contactNumberPattern = /^\+\d{1,3}\d{1,14}$/;
+
+    const form = document.forms[0];
+    const title = form["title"].value;
+    const description = form["description"].value;
+    const location = form["location"].value;
+    const timeToReach = form["time_to_reach"].value;
+    const requirements = form["requirements"].value;
+    const contactNumber = form["contact_number"].value;
+
+    if (!titlePattern.test(title)) {
+        alert("Title should contain only letters and spaces");
+        return false;
+    }
+    if (!descriptionPattern.test(description)) {
+        alert("Description can include letters, numbers, and basic punctuation");
+        return false;
+    }
+    if (!locationPattern.test(location)) {
+        alert("Location should contain only letters and spaces");
+        return false;
+    }
+    if (!timeToReachPattern.test(timeToReach)) {
+        alert("Time to reach can include letters, numbers, and colons");
+        return false;
+    }
+    if (!requirementsPattern.test(requirements)) {
+        alert("Requirements can include letters, numbers, and basic punctuation");
+        return false;
+    }
+    if (!contactNumberPattern.test(contactNumber)) {
+        alert("Contact number should be in international format, starting with + followed by country code and number");
+        return false;
+    }
+
+    let currentDate = new Date().toISOString().split('T')[0];
+
+    // Get the audition date and deadline dates from form
+    let auditionDate = document.getElementById('audition_date').value;
+    let deadlineDate = document.querySelector('[name="deadline"]').value;
+
+    // Check if audition date is today or a future date
+    if (auditionDate < currentDate) {
+        alert("Audition date cannot be a past date. Please select the current date or a future date.");
+        return false; // Prevent form submission
+    }
+
+    // Check if deadline date is today or a future date
+    if (deadlineDate < currentDate) {
+        alert("Deadline cannot be a past date. Please select the current date or a future date.");
+        return false; // Prevent form submission
+    }
+    return true;
+}
+
+// document.addEventListener("DOMContentLoaded", function() {
+//         // Get the current date
+//         let currentDate = new Date().toISOString().split('T')[0]; // Get date in YYYY-MM-DD format
+//         document.getElementById("auditionDate").setAttribute("min", currentDate); // Set the min attribute
+//     });
+</script>

@@ -1,0 +1,100 @@
+{% include 'admin_header.html'%}
+<br><br><br><br><br><br><br>
+<center>
+        <head>
+            <style>
+                body{
+                    background-color: #F9E8C9;
+                }
+                /* General table container styling */
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                    font-family: Arial, sans-serif;
+                }
+        
+                /* Table header styling */
+                th {
+                    background-color: #4e73df; /* Blue background for header */
+                    color: #fff;
+                    padding: 12px 15px;
+                    text-align: left;
+                    font-size: 1rem;
+                }
+        
+                /* Table row styling */
+                td {
+                    padding: 12px 15px;
+                    text-align: left;
+                    border: 1px solid #ddd;
+                }
+        
+                /* Even rows have a different background color for better readability */
+                tr:nth-child(even) {
+                    background-color: #f9f9f9;
+                }
+        
+                /* Hover effect on table rows */
+                tr:hover {
+                    background-color: #f1f1f1; /* Slightly darker background on hover */
+                }
+        
+                /* Input field styling inside the table */
+                input[type="text"] {
+                    padding: 8px;
+                    width: 80%;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    font-size: 0.9rem;
+                    transition: border-color 0.3s ease;
+                }
+        
+                input[type="text"]:focus {
+                    border-color: #4e73df;
+                    outline: none;
+                }
+        
+                input[type="submit"] {
+                    padding: 8px 16px;
+                    background-color: #4e73df;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    font-size: 0.9rem;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                }
+        
+                input[type="submit"]:hover {
+                    background-color: #2e59d9; /* Darker blue on hover */
+                }
+            </style>
+        </head>
+            <table>
+                <tr>
+                    <th>Complaint</th>
+                    <th>Reply</th>
+                    <th>Date</th>
+                </tr>
+                {% for i in data['view'] %}
+                <tr>
+                    <td>{{ i['description'] }}</td>
+                    {% if i['reply'] == 'pending' %}
+                    <td>
+                        <form method="post">
+                            <input type="hidden" name="id" value="{{ i['complaint_id'] }}">
+                            <input type="text" name="reply" placeholder="Enter your reply here" required>
+                            <input type="submit" name="submit" value="Submit">
+                        </form>
+                    </td>
+                    {% else %}
+                    <td>{{ i['reply'] }}</td>
+                    {% endif %}
+                    <td>{{ i['date'] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+</center>
+<br><br><br><br><br><br><br><br><br>
+{% include 'footer.html'%}

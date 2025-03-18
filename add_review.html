@@ -1,0 +1,129 @@
+{% include 'normal_header.html' %}
+<br><br><br><br><br><br><br>
+<center>
+    <h1>Add Rating</h1>
+    <form action="" method="post" class="rating-form" onsubmit="return validateForm()">    
+        <table class="form-table">
+            <tr>
+                <th class="form-label">Review</th>
+                <td><input type="text" name="review" class="form-input" placeholder="enter the review" required></td>
+            </tr>
+            <tr>
+                <th class="form-label">Rating</th>
+                <td><input type="text" name="rating" class="form-input" placeholder="enter the rating" pattern="[1-5]" title="Please enter a rating between 1 and 5" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="submit" value="Submit" class="submit-btn"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</center>
+
+<script>
+function validateForm() {
+    const review = document.forms["rating-form"]["review"].value;
+    const rating = document.forms["rating-form"]["rating"].value;
+
+    if (review === "") {
+        alert("Review must be filled out");
+        return false;
+    }
+
+    const ratingPattern = /^[1-5]$/;
+    if (!ratingPattern.test(rating)) {
+        alert("Please enter a valid rating between 1 and 5");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+
+<!-- Embedded CSS -->
+<style>
+    /* Global Styles */
+    body {
+        background-color: #F9E8C9; /* Soft peach background color */
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Form Table Styling */
+    .rating-form {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for form */
+    }
+
+    .form-table {
+        width: 100%;
+    }
+
+    .form-table th, .form-table td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #4A90E2;
+        font-size: 18px;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-top: 5px;
+    }
+
+    .form-input:focus {
+        border-color: #4A90E2; /* Blue border on focus */
+        outline: none;
+    }
+
+    .submit-btn {
+        background-color: #4A90E2;
+        color: white;
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .submit-btn:hover {
+        background-color: #357ABD; /* Darker blue on hover */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 767px) {
+        .page-title {
+            font-size: 28px; /* Smaller title on mobile */
+        }
+
+        .form-input {
+            font-size: 14px; /* Smaller input font size on mobile */
+            padding: 8px;
+        }
+
+        .submit-btn {
+            padding: 10px 16px; /* Adjust button size */
+            font-size: 14px;
+        }
+    }
+</style>
+<br><br><br><br><br><br>
+{% include 'footer.html' %}

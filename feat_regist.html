@@ -1,0 +1,158 @@
+{%include 'public_header.html'%}
+<br><br><br><br><br>
+<center>
+    <head>
+        <style>
+            /* General body styling */
+            body {
+                font-family: 'Roboto', sans-serif;
+                background-color: #F9E8C9; /* Light gray background */
+                margin: 0;
+                padding: 0;
+            }
+    
+            /* Container for centering the form */
+            .form-container {
+                max-width: 700px;
+                margin: 50px auto;
+                padding: 30px;
+                background-color: white; /* White background for the form */
+                border-radius: 12px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+                border: 1px solid #e2e2e2;
+            }
+    
+            h2 {
+                text-align: center;
+                color: #4e73df; /* Blue color for heading */
+                margin-bottom: 25px;
+                font-size: 2rem;
+                letter-spacing: 1px;
+            }
+    
+            /* Styling the table layout */
+            table {
+                width: 100%;
+                border-spacing: 12px 20px;
+                margin-bottom: 20px;
+            }
+    
+            th {
+                text-align: left;
+                font-size: 1rem;
+                color: #333;
+                padding-right: 15px;
+                font-weight: 500;
+            }
+    
+            td {
+                text-align: left;
+            }
+    
+            input[type="text"], input[type="password"], input[type="file"] {
+                width: 100%;
+                padding: 12px;
+                margin: 5px 0 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                font-size: 1rem;
+                background-color: #f9f9f9; /* Light background for input fields */
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            }
+    
+            input[type="text"]:focus, input[type="password"]:focus, input[type="file"]:focus {
+                border-color: #4e73df; /* Blue border on focus */
+                outline: none;
+                box-shadow: 0 0 10px rgba(78, 115, 223, 0.5); /* Subtle shadow effect on focus */
+            }
+    
+            input[type="submit"] {
+                width: 100%;
+                padding: 14px;
+                background-color: #4e73df; /* Blue background for submit button */
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 1.1rem;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+    
+            input[type="submit"]:hover {
+                background-color: #2e59d9; /* Darker blue on hover */
+                transform: translateY(-3px); /* Slightly lift button on hover */
+            }
+    
+            input[type="submit"]:active {
+                background-color: #2557b7; /* Darker blue when button is clicked */
+                transform: translateY(0); /* Return button to original position */
+            }
+    
+            /* Placeholder text styling */
+            ::placeholder {
+                color: #bbb; /* Gray placeholder text */
+            }
+    
+            /* Responsive styling */
+            @media (max-width: 600px) {
+                .form-container {
+                    padding: 20px;
+                    margin: 15px;
+                }
+    
+                h2 {
+                    font-size: 1.8rem;
+                }
+            }
+        </style>
+    </head>
+    <div class="form-container">
+        <h2>Registration Form</h2>
+        <form method="post" enctype="multipart/form-data">
+
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <td><input type="text" name="fname" placeholder="Enter your first name" required pattern="^[a-zA-Z\s]+$"></td>
+                </tr>
+                <tr>
+                    <th>Phone Number</th>
+                    <td><input type="text" name="phone" placeholder="Enter your phone number" required pattern="\+?[0-9]{1,3}?[0-9]{10}" title="enter a valid number.."></td>
+                </tr>
+                <tr>
+                    <th>Profession</th>
+                    <td><input type="text" name="prefession" placeholder="Enter your profession" required></td>
+                </tr>
+                <tr>
+                    <th>Image</th>
+                    <td><input type="file" name="image" required></td>
+                </tr>
+                <tr>
+                    <th>Biography Description</th>
+                    <td><input type="text" name="biography_description" placeholder="Enter your biography" required></td>
+                </tr>
+                <tr>
+                    <th>Portfolio Link</th>
+                    <td><input type="text" name="portfolio_link" placeholder="Enter your portfolio link" required></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><input type="text" name="email" placeholder="Enter your email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"></td>
+                </tr>
+                <tr>
+                    <th>Username</th>
+                    <td><input type="text" name="username" placeholder="Enter your username" required></td>
+                </tr>
+                <tr>
+                    <th>Password</th>
+                    <td><input type="password" name="psw" placeholder="Create your password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])\S{8,}$" title="At Least 1 Uppercase Letter, 1 Lowercase Letter, 1 Digit, 1 Special Character, and No Spaces"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" name="submit" value="Submit"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</center>
+<br>
+{% include 'footer.html'%}

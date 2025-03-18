@@ -1,0 +1,112 @@
+{% include 'normal_header.html'%}
+<br><br><br><br><br><br><br>
+<div class="container my-5">
+    <h1 class="text-center text-primary mb-4">Application</h1>
+
+    <!-- Form for submitting vacancy details -->
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-primary text-white text-center"></div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="Name" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" required pattern="^[a-zA-Z\s]+$" title="Name should contain only letters and spaces">
+                </div>
+                <div class="mb-3">
+                    <label for="Email" class="form-label">Email</label>
+                    <input type="text" class="form-control" name="email" id="email" placeholder="Enter email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address">
+                </div>
+                <div class="mb-3">
+                    <label for="Phone" class="form-label">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="phone" placeholder="along with country code " required pattern="^\+\d{1,3}\d{1,14}$" title="Phone number should be in international format, starting with + followed by country code and number">
+                </div>
+                <div class="mb-3">
+                    <label for="'resume" class="form-label">Resume</label>
+                    <input type="file" class="form-control" name="resume" id="resume" placeholder="Upload resume" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Portfolio Link" class="form-label">Portfolio Link</label>
+                    <input type="url" class="form-control" name="portfolio_link" id="portfolio_link" placeholder="www.something.com" required title="Please enter a valid URL">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" name="submit" class="btn btn-success btn-lg">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS -->
+<style>
+    /* General Page Styling */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    /* Card Styling */
+    .card {
+        border-radius: 10px;
+        border: none;
+        margin-bottom: 30px;
+    }
+
+    .card-header {
+        border-radius: 10px 10px 0 0;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .btn-lg {
+        padding: 10px 40px;
+        font-size: 1.2rem;
+    }
+
+    /* Button Customization */
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    /* Table Customization */
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f8f9fa;
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 15px;
+    }
+
+    /* Table Hover Effects */
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Placeholder Styling */
+    ::placeholder {
+        color: #6c757d;
+        font-style: italic;
+    }
+
+    /* Footer Styling */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #343a40;
+        color: white;
+        margin-top: 50px;
+    }
+</style>
+<br><br><br><br><br>
+{% include 'footer.html'%}
+
+

@@ -1,0 +1,193 @@
+{% include 'admin_header.html'%}
+<br><br><br><br><br><br><br>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9e8c9; /* Soft background color */
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #ffffff; /* White background for the form and table */
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+
+    h1 {
+        text-align: center;
+        color: #4e73df; /* Blue color for the header */
+        margin-bottom: 30px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    table th, table td {
+        padding: 12px;
+        text-align: left;
+        font-size: 1rem;
+        border-bottom: 1px solid #ddd;
+    }
+
+    table th {
+        background-color: white;
+        color: lightblue;
+        font-weight: bold;
+    }
+
+    table td {
+        background-color: #fafafa;
+    }
+
+    table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    input[type="text"], input[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: #fafafa;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input[type="text"]:focus, input[type="submit"]:focus {
+        border-color: #4e73df;
+        outline: none;
+        box-shadow: 0 0 10px rgba(78, 115, 223, 0.5);
+    }
+
+    input[type="submit"] {
+        background-color: #4e73df;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #2e59d9;
+        transform: translateY(-3px);
+    }
+
+    input[type="submit"]:active {
+        background-color: #2557b7;
+        transform: translateY(0);
+    }
+
+    /* Responsive styling */
+    @media (max-width: 600px) {
+        .container {
+            padding: 20px;
+            margin: 15px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        table th, table td {
+            font-size: 0.9rem;
+            padding: 8px;
+        }
+    }
+</style>
+
+<div class="container">
+    <h1>Entertainment Information</h1>
+    <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <table>
+            <tr>
+                <th>Entertainment Type</th>
+                <td><input type="text" name="entity_type" placeholder="Enter entity type" required pattern="^[a-zA-Z\s]+$" title="Entity Type should contain only letters and spaces"></td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td><input type="text" name="name" placeholder="Enter name" required pattern="^[a-zA-Z\s]+$" title="Name should contain only letters and spaces"></td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td><input type="text" name="location" placeholder="Enter location" required pattern="^[a-zA-Z0-9\s,]+$" title="Location can include letters, numbers, spaces, and commas"></td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td><input type="text" name="phone" placeholder="Enter phone number" required pattern="^\+\d{1,3}\d{1,14}$" title="Phone number should be in international format, starting with + followed by country code and number"></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><input type="text" name="email" placeholder="Enter email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address"></td>
+            </tr>
+            <tr>
+                <th>Website Link</th>
+                <td><input type="url" name="website_link" placeholder="Enter website link" required title="Please enter a valid URL"></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><input type="text" name="description" placeholder="Enter description" required pattern="^[a-zA-Z0-9\s.,!?'-]+$" title="Description can include letters, numbers, and basic punctuation"></td>
+            </tr>
+            <tr>
+                <th>Established Date</th>
+                <td><input type="date" name="established_date" placeholder="Enter established date" required title="Please enter a valid date"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<br><br><br><br><br>
+{% include 'footer.html'%}
+
+<script>
+function validateForm() {
+    const entityTypePattern = /^[a-zA-Z\s]+$/;
+    const namePattern = /^[a-zA-Z\s]+$/;
+    const locationPattern = /^[a-zA-Z0-9\s,]+$/;
+    const phonePattern = /^\+\d{1,3}\d{1,14}$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const descriptionPattern = /^[a-zA-Z0-9\s.,!?'-]+$/;
+
+    const form = document.forms[0];
+    const entityType = form["entity_type"].value;
+    const name = form["name"].value;
+    const location = form["location"].value;
+    const phone = form["phone"].value;
+    const email = form["email"].value;
+    const description = form["description"].value;
+
+    if (!entityTypePattern.test(entityType)) {
+        alert("Entity Type should contain only letters and spaces");
+        return false;
+    }
+    if (!namePattern.test(name)) {
+        alert("Name should contain only letters and spaces");
+        return false;
+    }
+    if (!locationPattern.test(location)) {
+        alert("Location can include letters, numbers, spaces, and commas");
+        return false;
+    }
+    if (!phonePattern.test(phone)) {
+        alert("Phone number should be in international format, starting with + followed by country code and number");
+        return false;
+    }
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address");
+        return false;
+    }
+    if (!descriptionPattern.test(description)) {
+        alert("Description can include letters, numbers, and basic punctuation");
+        return false;
+    }
+    return true;
+}
+</script>

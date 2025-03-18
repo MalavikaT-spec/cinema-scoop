@@ -1,0 +1,120 @@
+{% include 'admin_header.html'%}
+<br><br><br><br><br><br><br>
+    <div class="review-container">
+        <h1 class="page-title">Review</h1>
+        <table class="review-table">
+            <thead>
+                <tr>
+                    <th>Review</th>
+                    <th>Rating</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data['view'] %}
+                <tr>
+                    <td>{{i['review']}}</td>
+                    <td>{{i['rating']}}</td>
+                    <td>{{i['date']}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9e8c9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .review-container {
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-title {
+        text-align: center;
+        color: #4e73df;
+        margin-bottom: 30px;
+        font-size: 2rem;
+    }
+
+    .review-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .review-table th, .review-table td {
+        padding: 12px;
+        text-align: left;
+        font-size: 1rem;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .review-table th {
+        background-color: #4e73df;
+        color: white;
+        font-weight: bold;
+    }
+
+    .review-table td {
+        background-color: #fafafa;
+    }
+
+    .review-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Optional: Add color styling for ratings */
+    .review-table td:nth-child(2) {
+        font-weight: bold;
+        color: #4e73df;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 600px) {
+        .review-container {
+            padding: 20px;
+            margin: 15px;
+        }
+
+        .page-title {
+            font-size: 1.6rem;
+        }
+
+        .review-table th, .review-table td {
+            font-size: 0.9rem;
+            padding: 8px;
+        }
+    }
+</style>
+<br><br><br><br><br>
+{% include 'footer.html'%}
+
+<script>
+function validateForm() {
+    const reviewPattern = /^[a-zA-Z0-9\s.,!?'-]+$/;
+    const ratingPattern = /^[1-5]$/;
+
+    const form = document.forms[0];
+    const review = form["review"].value;
+    const rating = form["rating"].value;
+
+    if (!reviewPattern.test(review)) {
+        alert("Review can include letters, numbers, and basic punctuation");
+        return false;
+    }
+    if (!ratingPattern.test(rating)) {
+        alert("Rating must be a number between 1 and 5");
+        return false;
+    }
+    return true;
+}
+</script>

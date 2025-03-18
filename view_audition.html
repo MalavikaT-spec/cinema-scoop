@@ -1,0 +1,122 @@
+{% include 'normal_header.html'%}
+<center>
+<br><br><br><br><br><br><br>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audition Details</title>
+
+    <!-- Embedded CSS -->
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #F9E8C9; /* Soft peach background color */
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        }
+
+        /* Table Styling */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th, .table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #DEE2E6;
+            border-radius: 4px;
+        }
+
+        .table th {
+            background-color: #343A40;
+            color: white;
+            font-size: 16px;
+        }
+
+        .table td {
+            font-size: 14px;
+        }
+
+        .table tbody tr:hover {
+            background-color: #E9ECEF; /* Light gray on hover */
+        }
+
+        /* Title Styling */
+        h2 {
+            color: #4A90E2;
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 767px) {
+            h2 {
+                font-size: 28px; /* Smaller title for mobile */
+            }
+
+            .table th, .table td {
+                font-size: 12px; /* Smaller text for mobile */
+                padding: 8px; /* Reduced padding for mobile */
+            }
+
+            .container {
+                padding: 20px; /* Adjust container padding */
+            }
+        }
+    </style>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Audition Details</h2>
+
+    <form method="post">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Audition Date</th>
+                        <th>Location</th>
+                        <th>Time to Reach</th>
+                        <th>Requirements</th>
+                        <th>Deadline</th>
+                        <th>Contact Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data['view'] %}
+                    <tr>
+                        <td>{{ i['title'] }}</td>
+                        <td>{{ i['description'] }}</td>
+                        <td>{{ i['audition_date'] }}</td>
+                        <td>{{ i['location'] }}</td>
+                        <td>{{ i['time_to_reach'] }}</td>
+                        <td>{{ i['requirements'] }}</td>
+                        <td>{{ i['deadline'] }}</td>
+                        <td>{{ i['contact_number'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+
+</center>
+<br><br><br><br><br><br><br>
+{% include 'footer.html'%}

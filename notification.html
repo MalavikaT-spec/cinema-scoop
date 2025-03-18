@@ -1,0 +1,134 @@
+{% include 'admin_header.html'%}
+<br><br><br><br><br><br><br>
+<center>
+    <div class="form-container">
+        <h2>Create Notification</h2>
+        <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <td><input type="text" name="title" placeholder="Enter event title" required pattern="^[a-zA-Z0-9\s]+$" title="Title should contain only letters, numbers, and spaces"></td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td><input type="text" name="description" placeholder="Enter event description" required pattern="^[a-zA-Z0-9\s.,!?'-]+$" title="Description can include letters, numbers, and basic punctuation"></td>
+                </tr>
+                <tr>
+                    <th>Date & Time</th>
+                    <td><input type="datetime-local" name="date_time" placeholder="Enter event date and time" required pattern="^[a-zA-Z0-9\s:,-]+$" title="Date and Time can include letters, numbers, spaces, colons, commas, and hyphens"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" name="submit" value="Submit"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</center>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9e8c9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #4e73df;
+        margin-bottom: 30px;
+        font-size: 2rem;
+    }
+
+    table {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    th {
+        text-align: left;
+        font-size: 1.1rem;
+        color: #555;
+        padding-right: 15px;
+    }
+
+    td {
+        text-align: left;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: #fafafa;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+        border-color: #4e73df;
+        outline: none;
+        box-shadow: 0 0 10px rgba(78, 115, 223, 0.5);
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 14px;
+        background-color: #4e73df;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #2e59d9;
+        transform: translateY(-3px);
+    }
+
+    input[type="submit"]:active {
+        background-color: #2557b7;
+        transform: translateY(0);
+    }
+</style>
+<br><br><br><br><br>
+{% include 'footer.html'%}
+
+<script>
+function validateForm() {
+    const titlePattern = /^[a-zA-Z0-9\s]+$/;
+    const descriptionPattern = /^[a-zA-Z0-9\s.,!?'-]+$/;
+    const dateTimePattern = /^[a-zA-Z0-9\s:,-]+$/;
+
+    const form = document.forms[0];
+    const title = form["title"].value;
+    const description = form["description"].value;
+    const dateTime = form["date_time"].value;
+
+    if (!titlePattern.test(title)) {
+        alert("Title should contain only letters, numbers, and spaces");
+        return false;
+    }
+    if (!descriptionPattern.test(description)) {
+        alert("Description can include letters, numbers, and basic punctuation");
+        return false;
+    }
+    if (!dateTimePattern.test(dateTime)) {
+        alert("Date and Time can include letters, numbers, spaces, colons, commas, and hyphens");
+        return false;
+    }
+    return true;
+}
+</script>

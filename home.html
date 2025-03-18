@@ -1,0 +1,87 @@
+{% include 'public_header.html' %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CINEMA SCOOP</title>
+    <style>
+        body {
+            background-image: url(static/assets/img/login.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 300px;
+            margin: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        .card h2 {
+            color: #4e73df;
+            font-size: 1.8rem;
+        }
+        .card p {
+            font-size: 1rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+        
+<br><br><br><br><br>
+    <div class="container">
+        <h1 style="color: white;">Welcome to CINEMA SCOOP - The Ultimate Film Experience</h1>
+        <div class="card">
+            <h2>Bringing Stories to Life</h2>
+            <p>Welcome to <strong>CINEMA SCOOP</strong>, where creativity, storytelling, and cinematic brilliance create unforgettable experiences.</p>
+        </div>
+
+        <div class="card">
+            <h2>Get Involved</h2>
+            <p>Whether you’re looking to create or consume, there are many ways to be part of our film community.</p>
+        </div>
+
+        <div class="card">
+            <h2>Our Vision</h2>
+            <p>At <strong>CINEMA SCOOP</strong>, we empower creativity, spark imagination, and foster innovation in filmmaking.</p>
+        </div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                       ABOUT NORMAL MEMBERS
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                     Generel <strong>public</strong> who likes to advertise themselves into the film industry
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      ABOUT FEATURE MEMBERS
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      Established personalities like <strong>Director,Writer,Producer,...</strong> in the film industry
+                    </div>
+                  </div>
+                </div>
+            </div>
+    </div>
+<br><br><br><br><br><br>
+{% include 'footer.html' %}

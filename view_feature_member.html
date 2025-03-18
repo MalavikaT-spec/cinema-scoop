@@ -1,0 +1,159 @@
+{% include 'normal_header.html'%}
+<br><br><br><br><br><br>
+<style>
+        /* Global Styles */
+        body {
+            background-color: #F9E8C9; /* Soft peach background color */
+            font-family: 'Arial', sans-serif; /* Clean font */
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        }
+
+        /* Table Styling */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th, .table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #DEE2E6;
+            border-radius: 4px;
+        }
+
+        .table th {
+            background-color: #343A40;
+            color: white;
+            font-size: 16px;
+        }
+
+        .table td {
+            font-size: 14px;
+        }
+
+        .table tbody tr:hover {
+            background-color: #E9ECEF; /* Light gray on hover */
+        }
+
+        /* Image Styling */
+        .img-fluid {
+            border-radius: 50%;
+            border: 2px solid #4A90E2; /* Blue border around images */
+        }
+
+        /* Button Styling */
+        .btn-link {
+            color: #4A90E2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+
+        .btn-warning {
+            background-color: #FF9F00;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn-warning:hover {
+            background-color: #F59D00;
+        }
+
+        /* Title Styling */
+        h2 {
+            color: #4A90E2;
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 767px) {
+            h2 {
+                font-size: 28px; /* Smaller title for mobile */
+            }
+
+            .table th, .table td {
+                font-size: 12px; /* Smaller text for mobile */
+                padding: 8px; /* Reduced padding for mobile */
+            }
+
+            .container {
+                padding: 20px; /* Adjust container padding */
+            }
+
+            .img-fluid {
+                width: 60px;
+                height: 60px; /* Smaller images for mobile */
+            }
+
+            .btn-warning {
+                padding: 6px 12px; /* Adjust button size for mobile */
+            }
+        }
+    </style>
+
+</head>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Feature Members Details</h2>
+
+    <form action="" method="post">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>FM ID</th>
+                        <th>Full Name</th>
+                        <th>Phone</th>
+                        <th>Profession</th>
+                        <th>Image</th>
+                        <th>Biography</th>
+                        <th>Portfolio Link</th>
+                        <th>Email</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data['view'] %}
+                    <tr>
+                        <td>{{ i['fm_id'] }}</td>
+                        <td>{{ i['fname'] }}</td>
+                        <td>{{ i['phone'] }}</td>
+                        <td>{{ i['prefession'] }}</td>
+                        <td>
+                            <img src="{{ i['file'] }}" width="100px" height="100px" alt="User Image" class="img-fluid">
+                        </td>
+                        <td>{{ i['biography_description'] }}</td>
+                        <td><a href="/manage_feature_members" target="_blank" class="btn btn-link">View Portfolio</a></td>
+                        <td>{{ i['email'] }}</td>
+                        <td><a href="/add_review?id={{ i['fm_id'] }}" class="btn btn-warning btn-sm">Rate</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+<br><br><br><br><br><br>
+{% include 'footer.html'%}
+

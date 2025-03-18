@@ -1,0 +1,134 @@
+{% include 'normal_header.html'%}
+<br><br><br><br><br><br><br>
+
+<!-- Main Container -->
+<div class="container my-5 custom-container">
+    <!-- Page Title -->
+    <h2 class="text-center mb-4 custom-title">Entertainment Information</h2>
+
+    <!-- Table Container -->
+    <div class="table-responsive custom-table-container shadow-lg rounded">
+        <!-- Table -->
+        <table class="table custom-table table-striped table-bordered table-hover">
+            <!-- Table Header -->
+            <thead class="custom-table-header">
+                <tr>
+                    <th>Entity Type</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Website Link</th>
+                    <th>Description</th>
+                    <th>Established Date</th>
+                </tr>
+            </thead>
+            <!-- Table Body -->
+            <tbody>
+                {% for i in data['view'] %}
+                    <tr>
+                        <td>{{i['entity_type']}}</td>
+                        <td>{{i['name']}}</td>
+                        <td>{{i['location']}}</td>
+                        <td>{{i['phone']}}</td>
+                        <td>{{i['email']}}</td>
+                        <td><a href="{{i['website_link']}}" target="_blank">{{i['website_link']}}</a></td>
+                        <td>{{i['description']}}</td>
+                        <td>{{i['established_date']}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br><br><br><br><br><br><br><br>
+{% include 'footer.html'%}
+
+<!-- Embedded CSS -->
+<style>
+    /* Global Styling */
+    body {
+        background-color: #F9E8C9; /* Soft peach background color */
+        font-family: 'Arial', sans-serif; /* Clean font for overall readability */
+        color: #333; /* Dark text for contrast */
+    }
+
+    /* Container Styling */
+    .custom-container {
+        background-color: #ffffff; /* White background for the content */
+        padding: 30px;
+        border-radius: 10px; /* Rounded corners for the main container */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow to lift the container */
+    }
+
+    /* Title Styling */
+    .custom-title {
+        color: #4A90E2; /* Soft blue color for title */
+        font-size: 36px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+
+    /* Table Container Styling */
+    .custom-table-container {
+        background-color: #F1F1F1; /* Light gray background for the table */
+        padding: 20px;
+        border-radius: 8px; /* Rounded corners for the table container */
+    }
+
+    /* Table Styling */
+    .custom-table {
+        font-family: 'Roboto', sans-serif; /* Modern font for the table */
+        border-collapse: collapse;
+        width: 100%; /* Full width */
+    }
+
+    /* Table Header Styling */
+    .custom-table-header {
+        background-color: #2c5e91; /* Dark header for contrast */
+        color: #ffffff; /* White text */
+        font-size: 18px;
+    }
+
+    /* Table Row Hover Effect */
+    .custom-table tbody tr:hover {
+        background-color: #E9ECEF; /* Light gray on hover */
+    }
+
+    /* Table Cell Styling */
+    .custom-table th, .custom-table td {
+        padding: 12px 15px; /* Spacing inside table cells */
+        text-align: center; /* Centered text */
+        border: 1px solid #DEE2E6; /* Light gray borders for cells */
+        border-radius: 4px; /* Rounded corners for cells */
+    }
+
+    /* Table Link Styling */
+    .custom-table a {
+        color: #4A90E2; /* Blue color for links */
+        text-decoration: none; /* Remove underline */
+    }
+
+    .custom-table a:hover {
+        text-decoration: underline; /* Underline on hover */
+    }
+
+    /* Adjustments for Mobile Responsiveness */
+    @media (max-width: 767px) {
+        .custom-title {
+            font-size: 28px; /* Smaller title on mobile */
+        }
+
+        .custom-table th, .custom-table td {
+            font-size: 14px; /* Smaller font size on mobile */
+            padding: 8px; /* Adjust padding for smaller screens */
+        }
+
+        .custom-container {
+            padding: 20px; /* Adjust container padding on smaller screens */
+        }
+    }
+</style>

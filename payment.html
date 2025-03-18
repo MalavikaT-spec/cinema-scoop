@@ -1,0 +1,169 @@
+{% include 'public_header.html' %}
+
+    <title>Payment Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container h2 {
+            text-align: center;
+        }
+        .container input {
+            /* width: 100%; */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #45a049;
+        }
+
+        /* .container {
+            width: 60%;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        } */
+        .payment-method {
+            margin-bottom: 20px;
+        }
+        .payment-method input[type="radio"] {
+            margin-right: 50px;
+        }
+        /* .payment-method label {
+            padding-left: 50px;
+        } */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="month"], input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fafafa;
+            font-size: 1rem;
+        }
+        input[type="submit"] {
+            background-color: #4e73df;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #2e59d9;
+        }
+        .payment-method{
+            display: flex;
+            /* margin-right: 5rem; */
+            align-items: center;
+            justify-content: center;
+            gap: 0; /* Remove any default gap between items */
+        }
+
+        .payment-method input[type="radio"] {
+            margin: 0; /* Remove any default margin around the radio button */
+            padding: 0;
+        }
+
+        .payment-method label {
+            margin-left: 5px; 
+            margin-right: 10px; 
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 style="margin-top: 50px;">Payment Details</h2>
+
+        <!-- Radio buttons for selecting payment method -->
+        <div class="payment-method w-100">
+            <input type="radio" id="upi" name="paymentMethod" value="UPI" onclick="togglePaymentMethod('UPI')" required>
+            <label for="upi">UPI</label>
+            <input type="radio" id="card" name="paymentMethod" value="Card" onclick="togglePaymentMethod('Card')" required>
+            <label for="card">Card</label>
+        </div>
+        
+
+        <!-- Card Payment Form -->
+        <div id="cardPaymentSection" class="payment-section">
+            <form method="post">
+                <div class="form-group">
+                    <input type="text" id="cardNumber" name="cardNumber" placeholder="Card Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="month" id="expiryDate" name="expiryDate" placeholder="Expiry Date" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="cvv" name="cvv" placeholder="CVV" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="cardHolderName" name="cardHolderName" placeholder="Cardholder Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="billingAddress" name="billingAddress" placeholder="Billing Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="amount" name="amount" placeholder="Amount to pay: 2000" readonly value="Amount to pay : 2000" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="submit" value="Pay">
+                </div>
+            </form>
+        </div>
+
+        <!-- UPI Payment Form (Initially hidden) -->
+        <div id="upiPaymentSection" class="payment-section" style="display:none;">
+            <form method="post">
+                <div class="form-group">
+                    <input type="text" id="upiId" name="upiId" placeholder="Enter UPI ID" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="amount" name="amount" placeholder="Amount to pay: 2000" readonly value="Amount to pay : 2000" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="upi_btn" value="Pay">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle between Card and UPI payment sections
+        function togglePaymentMethod(paymentMethod) {
+            if (paymentMethod === 'Card') {
+                document.getElementById('cardPaymentSection').style.display = 'block';
+                document.getElementById('upiPaymentSection').style.display = 'none';
+            } else if (paymentMethod === 'UPI') {
+                document.getElementById('cardPaymentSection').style.display = 'none';
+                document.getElementById('upiPaymentSection').style.display = 'block';
+            }
+        }
+    </script>
+{% include 'footer.html' %}

@@ -1,0 +1,63 @@
+{% include 'admin_header.html'%}
+<br><br><br>
+
+<style>
+    /* Main content area */
+    .main-content {
+        padding: 40px;
+        text-align: center;
+        border-radius: 10px;
+        margin: 0px auto;
+        background-image: url('static/assets/img/background.jpg'); /* Background image URL */
+        
+        /* Set the background to cover the full width and height of the screen */
+        background-size: cover; /* Ensure the image covers the entire screen */
+        background-position: center; /* Center the background image */
+        background-attachment: fixed; /* Keep the background fixed when scrolling */
+        
+        /* Full height of the viewport */
+        height: 100vh; /* Make the section's height cover the full viewport height */
+        
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333333; /* Text color for readability */
+        margin: 0;
+        padding: 0;
+        
+        /* Add flexbox for centering and aligning the content */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* A button for demonstration */
+    .btn {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    /* Align heading to the left */
+    .main-content h1 {
+        color: #131212;
+        font-weight: bold;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        text-align: left; /* Aligns text to the left */
+        margin-left: 40px; /* Adds margin to the left side */
+    }
+</style>
+
+<!-- Main Content Section -->
+<div class="main-content">
+    <br><br><br><br><br><br><br><br><br><br>
+   
+    <h1>Welcome Admin</h1>
+    
+</div>
+
+{% include 'footer.html'%}

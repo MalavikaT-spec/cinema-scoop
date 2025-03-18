@@ -1,0 +1,68 @@
+{% include 'normal_header.html'%}
+<br><br><br><br><br><br>
+<center>
+    <h1>Portfolio</h1>
+    <div class="container my-5">
+    
+        {% if data['up'] %}
+            <form method="post" enctype="multipart/form-data" class="form-control" onsubmit="return validateForm()">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" value="{{data['up'][0]['title']}}" required pattern="^[a-zA-Z0-9\s]+$" title="Title should contain only letters, numbers, and spaces">
+                </div>
+    
+                <div class="mb-3">
+                    <input type="file" class="form-control" id="image_video" name="image_video" placeholder="Enter Image/Video URL" value="{{data['up'][0]['image_video']}}" required>
+                </div>
+    
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="achievements" name="achievements" placeholder="Enter achievements" value="{{data['up'][0]['achivements']}}" required pattern="^[a-zA-Z0-9\s.,!?'-]+$" title="Achievements can include letters, numbers, and basic punctuation">
+                </div>
+    
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary" name="upd">Update</button>
+                </div>
+            </form>
+        {% else %}
+            <form method="post" enctype="multipart/form-data" class="form-control" onsubmit="return validateForm()">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" required pattern="^[a-zA-Z0-9\s]+$" title="Title should contain only letters, numbers, and spaces">
+                </div>
+    
+                <div class="mb-3">
+                    <input type="file" class="form-control" id="image_video" name="image_video" placeholder="Choose image/video" required>
+                </div>
+    
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="achievements" name="achievements" placeholder="Enter achievement" required pattern="^[a-zA-Z0-9\s.,!?'-]+$" title="Achievements can include letters, numbers, and basic punctuation">
+                </div>
+    
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success" name="submit">Submit</button>
+                </div>
+            </form>
+        {% endif %}
+    
+    <form>
+        <table border="1">
+    
+            <div class="container my-4">
+                <div class="row">
+                    {% for i in data['view'] %}
+                    <div class="col-md-4">
+                        <div class="card shadow-sm mb-4">
+                            <img src="{{i['image_video']}}" class="card-img-top" alt="image" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{i['title']}}</h5>
+                                <p class="card-text">{{i['achivements']}}</p>
+                                <p class="card-text"><strong>Date:</strong> {{i['date']}}</p>
+                                <a href="?action=update&id={{i['portfolio_id']}}" class="btn btn-primary btn-sm">Update</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+</center>
+<br><br><br><br><br><br><br>
+{% include 'footer.html'%}

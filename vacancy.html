@@ -1,0 +1,199 @@
+{% include 'feature_header.html'%}
+<br><br><br><br><br><br><br>
+<div class="container my-5">
+    <h1 class="text-center text-primary mb-4">Vacancy Details</h1>
+
+    <!-- Form for submitting vacancy details -->
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-primary text-white text-center"></div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="Enter title" required pattern="^[a-zA-Z0-9\s]+$" title="Title should contain only letters, numbers, and spaces">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <input type="text" class="form-control" name="description" id="description" placeholder="Enter description" required pattern="^[a-zA-Z0-9\s.,!?'-]+$" title="Description can include letters, numbers, and basic punctuation">
+                </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <input type="text" class="form-control" name="category" id="category" placeholder="Enter category" required pattern="^[a-zA-Z0-9\s]+$" title="Category should contain only letters, numbers, and spaces">
+                </div>
+                <div class="mb-3">
+                    <label for="required_skills" class="form-label">Required Skills</label>
+                    <input type="text" class="form-control" name="required_skills" id="required_skills" placeholder="Enter required skills" required pattern="^[a-zA-Z0-9\s,]+$" title="Required skills can include letters, numbers, and commas">
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" class="form-control" name="location" id="location" placeholder="Enter location" required pattern="^[a-zA-Z0-9\s]+$" title="Location should contain only letters, numbers, and spaces">
+                </div>
+                <div class="mb-3">
+                    <label for="employment_type" class="form-label">Employment Type</label>
+                    <input type="text" class="form-control" name="employment_type" id="employment_type" placeholder="Enter employment type" required pattern="^[a-zA-Z\s]+$" title="Employment type should contain only letters and spaces">
+                </div>
+                <div class="mb-3">
+                    <label for="experience_req" class="form-label">Experience Required</label>
+                    <input type="text" class="form-control" name="experience_req" id="experience_req" placeholder="Enter required experience" required pattern="^[a-zA-Z0-9\s]+$" title="Experience required should contain only letters, numbers, and spaces">
+                </div>
+                <div class="mb-3">
+                    <label for="deadline" class="form-label">Deadline</label>
+                    <input type="date" class="form-control" name="deadline" id="deadline" required title="Please enter a valid date">
+                </div>
+                <div class="mb-3">
+                    <label for="contact_mail" class="form-label">Contact Email</label>
+                    <input type="email" class="form-control" name="contact_mail" id="contact_mail" placeholder="Enter contact email" required title="Please enter a valid email address">
+                </div>
+                <div class="mb-3">
+                    <label for="contact_num" class="form-label">Contact Number</label>
+                    <input type="text" class="form-control" name="contact_num" id="contact_num" placeholder="Enter contact number" required pattern="^\+\d{1,3}\d{1,14}$" title="Phone number should be in international format, starting with + followed by country code and number">
+                </div>
+                <div class="mb-3">
+                    <label for="slots" class="form-label">Available Slots</label>
+                    <input type="number" class="form-control" name="slots" id="slots" placeholder="Enter number of slots" required min="1" title="Please enter a valid number">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" name="submit" class="btn btn-success btn-lg">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Displaying the submitted vacancies -->
+    <div class="card shadow-lg">
+        <div class="card-header bg-secondary text-white text-center">
+            <h4>Vacancy Listings</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Required Skills</th>
+                            <th>Location</th>
+                            <th>Employment Type</th>
+                            <th>Experience Required</th>
+                            <th>Deadline</th>
+                            <th>Contact Email</th>
+                            <th>Contact Number</th>
+                            <th>Slots</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in data['view'] %}
+                            <tr>
+                                <td>{{ i['title'] }}</td>
+                                <td>{{ i['description'] }}</td>
+                                <td>{{ i['category'] }}</td>
+                                <td>{{ i['required_skills'] }}</td>
+                                <td>{{ i['location'] }}</td>
+                                <td>{{ i['employment_type'] }}</td>
+                                <td>{{ i['experience_req'] }}</td>
+                                <td>{{ i['deadline'] }}</td>
+                                <td>{{ i['contact_mail'] }}</td>
+                                <td>{{ i['contact_num'] }}</td>
+                                <td>{{ i['slots'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS -->
+<style>
+    /* General Page Styling */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    /* Card Styling */
+    .card {
+        border-radius: 10px;
+        border: none;
+        margin-bottom: 30px;
+    }
+
+    .card-header {
+        border-radius: 10px 10px 0 0;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .btn-lg {
+        padding: 10px 40px;
+        font-size: 1.2rem;
+    }
+
+    /* Button Customization */
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    /* Table Customization */
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f8f9fa;
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 15px;
+    }
+
+    /* Table Hover Effects */
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Placeholder Styling */
+    ::placeholder {
+        color: #6c757d;
+        font-style: italic;
+    }
+
+    /* Footer Styling */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #343a40;
+        color: white;
+        margin-top: 50px;
+    }
+</style>
+<br><br><br><br><br>
+{% include 'footer.html'%}
+
+<script>
+function validateForm() {
+    const titlePattern = /^[a-zA-Z0-9\s]+$/;
+    const descriptionPattern = /^[a-zA-Z0-9\s.,!?'-]+$/;
+    const categoryPattern = /^[a-zA-Z0-9\s]+$/;
+    const skillsPattern = /^[a-zA-Z0-9\s,]+$/;
+    const locationPattern = /^[a-zA-Z0-9\s]+$/;
+    const employmentTypePattern = /^[a-zA-Z\s]+$/;
+    const experiencePattern = /^[a-zA-Z0-9\s]+$/;
+    const phonePattern = /^\+\d{1,3}\d{1,14}$/;
+
+    const form = document.forms[0];
+    const title = form["title"].value;
+    const description = form["description"].value;
+    const category = form["category"].value;
+    const requiredSkills = form["required_skills"].value;
+    const location = form["location"].value;
+    const employmentType = form["employment_type"].value;
+}

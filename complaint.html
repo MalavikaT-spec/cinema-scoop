@@ -1,0 +1,176 @@
+{% include 'normal_header.html'%}
+<br><br><br><br><br><br>
+<center>
+    <style>
+        /* Global Styling */
+        body {
+            background-color: #F9E8C9; /* Soft peach background color */
+            font-family: 'Arial', sans-serif; /* Clean font for overall readability */
+            color: #333; /* Dark text for contrast */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px; /* Rounded corners for the container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        }
+
+        /* Title Styling */
+        h2 {
+            color: #4A90E2; /* Soft blue color for title */
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        /* Form Input Styling */
+        .form-control {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 12px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .form-control:focus {
+            border-color: #4A90E2; /* Blue border on focus */
+            outline: none;
+        }
+
+        /* Submit Button Styling */
+        .btn-primary {
+            background-color: #4A90E2; /* Soft blue background for the button */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #357ABD; /* Darker blue on hover */
+        }
+
+        /* Table Styling */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid #DEE2E6;
+            border-radius: 4px;
+        }
+
+        .table th {
+            background-color: #343A40;
+            color: white;
+            font-size: 18px;
+        }
+
+        .table tbody tr:hover {
+            background-color: #E9ECEF; /* Light gray on hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 767px) {
+            h2 {
+                font-size: 28px; /* Smaller title on mobile */
+            }
+
+            .form-control {
+                padding: 10px; /* Adjust padding on mobile */
+                font-size: 14px;
+            }
+
+            .btn-primary {
+                padding: 10px 15px; /* Adjust button size */
+                font-size: 14px;
+            }
+
+            .table th, .table td {
+                font-size: 14px; /* Adjust table font size on smaller screens */
+                padding: 8px; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container my-5">
+    <h2>Complaints</h2>
+    <!-- Complaint Form -->
+    <form method="post" onsubmit="return validateForm()">
+        <div class="mb-3">
+            <input type="text" class="form-control" name="description" placeholder="Enter description" required pattern="^[a-zA-Z0-9\s.,!?'-]+$" title="Description can include letters, numbers, and basic punctuation">
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+        </div>
+    </form>
+
+    <!-- Responses Table -->
+    <h2 class="text-center my-5">Responses</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Description</th>
+                    <th>Reply</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data['view'] %}
+                <tr>
+                    <td>{{ i['description'] }}</td>
+                    <td>{{ i['reply'] }}</td>
+                    <td>{{ i['date'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
+
+</center>
+<br><br><br><br>
+{% include 'footer.html'%}
+
+<script>
+function validateForm() {
+    const descriptionPattern = /^[a-zA-Z0-9\s.,!?'-]+$/;
+    const replyPattern = /^[a-zA-Z0-9\s.,!?'-]+$/;
+
+    const form = document.forms[0];
+    const description = form["description"].value;
+    const reply = form["reply"].value;
+
+    if (!descriptionPattern.test(description)) {
+        alert("Description can include letters, numbers, and basic punctuation");
+        return false;
+    }
+    if (!replyPattern.test(reply)) {
+        alert("Reply can include letters, numbers, and basic punctuation");
+        return false;
+    }
+    return true;
+}
+</script>
